@@ -1,0 +1,8 @@
+{
+  "new_version": "v2025",
+  "description": "Lower-carbon grid; heavier crude supply",
+  "overrides": [
+    {"key": "electricity.grid", "kg_co2e_per_unit": "0.30", "reference_unit": "kWh"},
+    {"key": "crude_oil", "kg_co2e_per_unit": "0.50", "reference_unit": "kg"}
+  ]
+}

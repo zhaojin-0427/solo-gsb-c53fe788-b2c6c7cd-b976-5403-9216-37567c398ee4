@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local databases
+data/*.db
+data/*.db-wal
+data/*.db-shm
+*.db

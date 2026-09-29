@@ -1,0 +1,34 @@
+{
+  "id": "refinery-demo",
+  "name": "Refining + blending two-process DAG (economic allocation)",
+  "default_factor_version": "v2024",
+  "processes": [
+    {
+      "id": "refining",
+      "name": "Crude refining",
+      "allocation": "economic",
+      "materials": [
+        {"id": "m_crude", "quantity": "10", "unit": "t", "factor_key": "crude_oil"},
+        {"id": "m_elec", "quantity": "5000", "unit": "kWh", "factor_key": "electricity.grid"},
+        {"id": "m_gas", "quantity": "10000", "unit": "MJ", "factor_key": "natural_gas"}
+      ],
+      "outputs": [
+        {"id": "o_diesel", "product_id": "diesel", "quantity": "3000", "unit": "L", "revenue": "6000"},
+        {"id": "o_naphtha", "product_id": "naphtha", "quantity": "2000", "unit": "L", "revenue": "2000"}
+      ]
+    },
+    {
+      "id": "blending",
+      "name": "Diesel blending",
+      "materials": [
+        {"id": "m_elec", "quantity": "1000", "unit": "kWh", "factor_key": "electricity.grid"}
+      ],
+      "inputs": [
+        {"id": "i_diesel", "from_process": "refining", "product_id": "diesel", "quantity": "1500", "unit": "L"}
+      ],
+      "outputs": [
+        {"id": "o_blend", "product_id": "blended-diesel", "quantity": "1500", "unit": "L"}
+      ]
+    }
+  ]
+}

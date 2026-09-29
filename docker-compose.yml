@@ -1,0 +1,21 @@
+services:
+  pcf-api:
+    build: .
+    image: pcf-api:latest
+    container_name: pcf-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - pcf-data:/data
+    environment:
+      PCF_DB_PATH: /data/pcf.db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import json,sys,urllib.request; r=urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=4); sys.exit(0 if json.load(r)['status']=='ok' else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  pcf-data:
